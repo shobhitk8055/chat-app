@@ -16,7 +16,17 @@ span#search-addon {
     cursor: pointer;
 }
 
-.messages{
+.messages {
     height: 78vh !important;
-    overflow: scroll;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.person-list {
+    height: 56vh;
+    overflow-y: scroll;
+}
+
+.send-message-input {
+    height: 50px;
 }

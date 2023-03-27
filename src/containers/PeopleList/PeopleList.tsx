@@ -1,8 +1,9 @@
 import React from "react";
+import Person from "../../components/Person/Person";
 
 interface Props {}
 
-function Conversations(props: Props) {
+function PeopleList(props: Props): React.ReactElement {
   const {} = props;
 
   return (
@@ -27,32 +28,19 @@ function Conversations(props: Props) {
         <div className="card-body">
           <div className="d-flex justify-content-between mb-2 text-primary">
             <h6>Conversations</h6>
-            <i className="fa-solid fa-circle-plus add-icon"></i> 
+            <i className="fa-solid fa-circle-plus add-icon"></i>
           </div>
-          <ul className="list-unstyled mb-0">
-            <li
-              className="p-2 border-bottom"
-              style={{ backgroundColor: "#eee" }}
-            >
-              <a href="#!" className="d-flex justify-content-between">
-                <div className="d-flex flex-row">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp"
-                    alt="avatar"
-                    className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                    width={60}
-                  />
-                  <div className="pt-1">
-                    <p className="fw-bold mb-0">John Doe</p>
-                    <p className="small text-muted">Hello, Are you there?</p>
-                  </div>
-                </div>
-                <div className="pt-1">
-                  <p className="small text-muted mb-1">Just now</p>
-                  <span className="badge bg-danger float-end">1</span>
-                </div>
-              </a>
-            </li>
+          <ul className="list-unstyled mb-0 person-list">
+            <Person
+              user={{
+                name: "Danny Smith",
+                image:
+                  "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp",
+              }}
+              lastMessage="Lorem ipsum dolor sit."
+              lastMessageAt="Just now"
+              unreadMessages={1}
+            />
             <li className="p-2 border-bottom">
               <a href="#!" className="d-flex justify-content-between">
                 <div className="d-flex flex-row">
@@ -177,4 +165,4 @@ function Conversations(props: Props) {
   );
 }
 
-export default Conversations;
+export default PeopleList;

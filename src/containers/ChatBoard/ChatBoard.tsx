@@ -1,6 +1,6 @@
 import React from "react";
-import Chat from "../Chat/Chat";
-import Conversations from "../Conversations/Conversations";
+import Messages from "../Messages/Messages";
+import PeopleList from "../PeopleList/PeopleList";
 
 interface Props {}
 
@@ -11,8 +11,8 @@ function ChatBoard(props: Props) {
     <section style={{ backgroundColor: "#eee" }}>
       <div className="container py-5">
         <div className="row">
-          <Conversations />
-          <Chat />
+          <PeopleList />
+          <Messages messageList={[]} />
         </div>
       </div>
     </section>
