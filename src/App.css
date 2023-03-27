@@ -1,0 +1,22 @@
+span#search-addon {
+    position: absolute;
+    z-index: 3;
+    top: 8px;
+    left: 2px;
+}
+
+.search-conversations {
+    padding-left: 40px !important;
+    height: 50px !important;
+    background-color: #eeeeee !important;
+}
+
+.add-icon {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.messages{
+    height: 78vh !important;
+    overflow: scroll;
+}
