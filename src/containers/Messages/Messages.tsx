@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Message from "../../components/Message/Message";
 import { IMessage } from "../../types/Message";
 
@@ -8,7 +8,7 @@ interface Props {
 
 function Messages(props: Props): React.ReactElement {
   const { messageList } = props;
-
+  
   return (
     <div className="col-md-6 col-lg-7 col-xl-8">
       <ul className="list-unstyled messages">
@@ -16,7 +16,7 @@ function Messages(props: Props): React.ReactElement {
           <Message message={i} />
         ))}
       </ul>
-      
+
       <div className="form-outline mb-3 d-flex">
         <input
           className="form-control me-2 bg-white send-message-input"

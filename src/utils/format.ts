@@ -1,1 +1,1 @@
-export const getDateString = (date: Date): string => "15 min ago";
+export const getDateString = (date: string): string => "15 min ago";

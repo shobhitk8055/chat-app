@@ -1,5 +1,30 @@
 [
-    {
-        "sender": 
-    }
+  {
+    "sender": {
+      "id": "1",
+      "name": "ravi",
+      "image": "ravi.png"
+    },
+    "receiver": {
+      "id": "2",
+      "name": "shankar",
+      "image": "shankar.png"
+    },
+    "text": "Hey there I am your bro!",
+    "time": "12-09-2009"
+  },
+  {
+    "sender": {
+      "id": "2",
+      "name": "shankar",
+      "image": "shankar.png"
+    },
+    "receiver": {
+      "id": "1",
+      "name": "ravi",
+      "image": "ravi.png"
+    },
+    "text": "I am your beset bro!",
+    "time": "12-09-2009"
+  }
 ]

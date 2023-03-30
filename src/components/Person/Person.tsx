@@ -24,7 +24,7 @@ function Person(props: Props) {
   return (
     <li
       className={clsx("p-2 border-bottom", isActive ? "active" : "")}
-      style={{ backgroundColor: "#eee" }}
+      style={{ backgroundColor: isActive ? "#eee" : 'unset' }}
       onClick={setActive}
     >
       <a href="#!" className="d-flex justify-content-between">
