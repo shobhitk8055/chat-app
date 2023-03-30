@@ -1,18 +1,32 @@
+import clsx from "clsx";
 import React from "react";
 import { IUser } from "../../types/User";
 
 interface Props {
+  isActive: boolean;
   user: IUser;
   lastMessage: string;
   lastMessageAt: string;
   unreadMessages: number;
+  setActive: () => void;
 }
 
 function Person(props: Props) {
-  const { user, lastMessage, lastMessageAt, unreadMessages } = props;
+  const {
+    setActive,
+    isActive,
+    user,
+    lastMessage,
+    lastMessageAt,
+    unreadMessages,
+  } = props;
 
   return (
-    <li className="p-2 border-bottom" style={{ backgroundColor: "#eee" }}>
+    <li
+      className={clsx("p-2 border-bottom", isActive ? "active" : "")}
+      style={{ backgroundColor: "#eee" }}
+      onClick={setActive}
+    >
       <a href="#!" className="d-flex justify-content-between">
         <div className="d-flex flex-row">
           <img

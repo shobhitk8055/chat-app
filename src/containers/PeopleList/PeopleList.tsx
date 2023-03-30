@@ -2,12 +2,12 @@ import React from "react";
 import Person from "../../components/Person/Person";
 
 interface Props {
-  activePerson: string;
+  activePerson?: string;
   setActivePerson: (id: string) => void;
 }
 
 function PeopleList(props: Props): React.ReactElement {
-  const {} = props;
+  const { activePerson, setActivePerson } = props;
 
   return (
     <div className="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
@@ -35,7 +35,10 @@ function PeopleList(props: Props): React.ReactElement {
           </div>
           <ul className="list-unstyled mb-0 person-list">
             <Person
+              isActive={!!(activePerson && activePerson === "1")}
+              setActive={() => setActivePerson("1")}
               user={{
+                id: "1",
                 name: "Danny Smith",
                 image:
                   "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp",

@@ -1,7 +1,8 @@
+import { IUser } from "./User";
+
 export type IMessage = {
-  type: string;
-  user: string;
+  sender: IUser;
+  receiver: IUser;
   time: string;
-  image: string;
   text: string;
 };

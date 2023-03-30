@@ -16,7 +16,7 @@ const Content = ({ message }: { message: IMessage }) => {
   return (
     <div className="card">
       <div className="card-header d-flex justify-content-between p-3">
-        <p className="fw-bold mb-0">{message.user}</p>
+        <p className="fw-bold mb-0">{message.sender.name}</p>
         <p className="text-muted small mb-0">
           <i className="far fa-clock" /> {message.time}
         </p>
