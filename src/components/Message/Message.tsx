@@ -1,5 +1,7 @@
 import React from "react";
+import { useChatStore } from "../../store/chat";
 import { IMessage } from "../../types/Message";
+import { getDateString } from "../../utils/format";
 
 const Image = ({ source }: { source: string }) => {
   return (
@@ -18,7 +20,9 @@ const Content = ({ message }: { message: IMessage }) => {
       <div className="card-header d-flex justify-content-between p-3">
         <p className="fw-bold mb-0">{message.sender.name}</p>
         <p className="text-muted small mb-0">
-          <i className="far fa-clock" /> {message.time}
+          <span>
+            <i className="far fa-clock" /> <span>{getDateString(message.time)}</span>
+          </span>
         </p>
       </div>
       <div className="card-body">
@@ -29,17 +33,19 @@ const Content = ({ message }: { message: IMessage }) => {
 };
 
 const Message = ({ message }: { message: IMessage }) => {
+  const { loggedInUser } = useChatStore();
+
   return (
     <li className="d-flex justify-content-between mb-4">
-      {message.type === "receive" ? (
+      {message.sender.id === loggedInUser.id ? (
         <>
-          <Image source={message.image} />
+          <Image source={message.sender.image} />
           <Content message={message} />
         </>
       ) : (
         <>
           <Content message={message} />
-          <Image source={message.image} />
+          <Image source={message.sender.image} />
         </>
       )}
     </li>

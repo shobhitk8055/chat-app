@@ -47,6 +47,19 @@ function PeopleList(props: Props): React.ReactElement {
               lastMessageAt="Just now"
               unreadMessages={0}
             />
+            <Person
+              isActive={!!(activePerson && activePerson === "1")}
+              setActive={() => setActivePerson("1")}
+              user={{
+                id: "1",
+                name: "Danny Smith",
+                image:
+                  "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp",
+              }}
+              lastMessage="Lorem ipsum dolor sit."
+              lastMessageAt="Just now"
+              unreadMessages={0}
+            />
           </ul>
         </div>
       </div>
