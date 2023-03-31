@@ -1,6 +1,7 @@
 import create from "zustand";
 import { IMessage } from "../types/Message";
 import { IUser } from "../types/User";
+import people from "../assets/people.json";
 
 type ChatStore = {
   loggedInUser: IUser;
@@ -10,11 +11,7 @@ type ChatStore = {
 };
 
 export const useChatStore = create<ChatStore>((set) => ({
-  loggedInUser: {
-    id: "1",
-    name: "Shobhit",
-    image: "",
-  },
+  loggedInUser: people[0],
   conversations: [],
   setAllConversations: (messages) =>
     set(() => ({ conversations: messages })),

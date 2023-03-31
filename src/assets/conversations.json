@@ -3,12 +3,12 @@
     "sender": {
       "id": "1",
       "name": "ravi",
-      "image": "ravi.png"
+      "image": "https://www.pngarts.com/files/5/User-Avatar-PNG-Image.png"
     },
     "receiver": {
       "id": "2",
       "name": "shankar",
-      "image": "shankar.png"
+      "image": "https://cdn2.iconfinder.com/data/icons/avatars-99/62/avatar-371-456323-512.png"
     },
     "text": "Hey there I am your bro!",
     "time": "12-09-2009"
@@ -17,12 +17,12 @@
     "sender": {
       "id": "2",
       "name": "shankar",
-      "image": "shankar.png"
+      "image": "https://cdn2.iconfinder.com/data/icons/avatars-99/62/avatar-371-456323-512.png"
     },
     "receiver": {
       "id": "1",
       "name": "ravi",
-      "image": "ravi.png"
+      "image": "https://www.pngarts.com/files/5/User-Avatar-PNG-Image.png"
     },
     "text": "I am your beset bro!",
     "time": "12-09-2009"
