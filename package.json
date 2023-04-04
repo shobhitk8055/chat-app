@@ -12,7 +12,9 @@
     "@types/react-dom": "^18.0.11",
     "bootstrap": "^5.2.3",
     "clsx": "^1.2.1",
+    "lodash": "^4.17.21",
     "mdb-react-ui-kit": "^5.1.0",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -47,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.192",
     "gh-pages": "^5.0.0"
   }
 }

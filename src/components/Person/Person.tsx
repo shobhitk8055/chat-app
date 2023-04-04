@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import React from "react";
 import { IUser } from "../../types/User";
+import { getTime } from "../../utils/format";
+import { upperFirst } from "lodash";
 
 interface Props {
   isActive: boolean;
@@ -24,7 +25,7 @@ function Person(props: Props) {
   return (
     <li
       className={clsx("p-2 border-bottom", isActive ? "active" : "")}
-      style={{ backgroundColor: isActive ? "#eee" : 'unset' }}
+      style={{ backgroundColor: isActive ? "#eee" : "unset" }}
       onClick={setActive}
     >
       <a href="#!" className="d-flex justify-content-between">
@@ -36,12 +37,12 @@ function Person(props: Props) {
             width={60}
           />
           <div className="pt-1">
-            <p className="fw-bold mb-0">{user.name}</p>
+            <p className="fw-bold mb-0">{upperFirst(user.name)}</p>
             <p className="small text-muted">{lastMessage}</p>
           </div>
         </div>
         <div className="pt-1">
-          <p className="small text-muted mb-1">{lastMessageAt}</p>
+          <p className="small text-muted mb-1 time">{getTime(lastMessageAt)}</p>
           {unreadMessages > 0 && (
             <span className="badge bg-danger float-end">{unreadMessages}</span>
           )}

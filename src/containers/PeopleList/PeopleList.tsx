@@ -1,26 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Person from "../../components/Person/Person";
-import { useChatStore } from "../../store/chat";
 import { IMessage } from "../../types/Message";
+import { IConversation } from "../../types/Conversation";
+import { useMessageStore } from "../../store/message";
+import { useUserStore } from "../../store/user";
+import { IUser } from "../../types/User";
 
 interface Props {
+  conversations: IConversation[];
   activePerson?: string;
   setActivePerson: (id: string) => void;
-  setMessages: (messages: IMessage[]) => void;
 }
 
 function PeopleList(props: Props): React.ReactElement {
-  const { activePerson, setActivePerson, setMessages } = props;
-  const { conversations, loggedInUser } = useChatStore();
+  const { conversations, activePerson, setActivePerson } = props;
+  const { messages, setAllCurrentMessages } = useMessageStore();
+  const { loggedInUser, setCurrentReceiver } = useUserStore();
+  const [value, setValue] = useState<string>();
+  const [allConversations, setAllConversations] = useState<IConversation[]>();
+  const [viewConversations, setViewConversations] = useState<IConversation[]>();
 
-  const handleActiveUser = (id: string) => {
+  const handleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setValue(val);
+    if (val) {
+      const convos = allConversations?.filter((i) =>
+        i.user.name.toLowerCase().match(new RegExp(val))
+      );
+      setViewConversations(convos);
+    }else{
+      setViewConversations(allConversations);
+    }
+  };
+
+  useEffect(() => {
+    if (conversations) {
+      setAllConversations(conversations);
+      setViewConversations(conversations);
+    }
+  }, [conversations]);
+
+  const handleActiveUser = (user: IUser) => {
+    const id = user.id;
     setActivePerson(id);
-    const messages = conversations.filter(
+    setCurrentReceiver(user);
+    const msgs = messages.filter(
       (i) =>
         (i.sender.id === loggedInUser.id && i.receiver.id === id) ||
         (i.receiver.id === loggedInUser.id && i.sender.id === id)
     );
-    setMessages(messages);
+    setAllCurrentMessages(msgs);
   };
 
   return (
@@ -34,6 +63,9 @@ function PeopleList(props: Props): React.ReactElement {
               placeholder="Search"
               aria-label="Search"
               aria-describedby="search-addon"
+              value={value}
+              onChange={handleValue}
+              onKeyUp={(e) => console.log("e.target")}
             />
             <span className="input-group-text border-0" id="search-addon">
               <i className="fas fa-search"></i>
@@ -47,33 +79,19 @@ function PeopleList(props: Props): React.ReactElement {
             <h6>Conversations</h6>
             <i className="fa-solid fa-circle-plus add-icon"></i>
           </div>
+          {viewConversations?.length === 0 && <p className="no-new-people">No chats found</p>}
           <ul className="list-unstyled mb-0 person-list">
-            <Person
-              isActive={!!(activePerson && activePerson === "1")}
-              setActive={() => setActivePerson("1")}
-              user={{
-                id: "1",
-                name: "Danny Smith",
-                image:
-                  "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp",
-              }}
-              lastMessage="Lorem ipsum dolor sit."
-              lastMessageAt="Just now"
-              unreadMessages={0}
-            />
-            <Person
-              isActive={!!(activePerson && activePerson === "2")}
-              setActive={() => handleActiveUser("2")}
-              user={{
-                id: "2",
-                name: "Marlyn Manrow",
-                image:
-                  "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp",
-              }}
-              lastMessage="Lorem ipsum dolor sit."
-              lastMessageAt="Just now"
-              unreadMessages={0}
-            />
+            {viewConversations?.map((person, index) => (
+              <Person
+                key={index}
+                isActive={!!(activePerson && activePerson === person.user.id)}
+                setActive={() => handleActiveUser(person.user)}
+                user={person.user}
+                lastMessage={person.lastMessage}
+                lastMessageAt={person.lastMessageAt}
+                unreadMessages={person.unreadMessages}
+              />
+            ))}
           </ul>
         </div>
       </div>

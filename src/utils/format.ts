@@ -1,1 +1,3 @@
-export const getDateString = (date: string): string => "15 min ago";
+import moment from "moment";
+
+export const getTime = (date: string): string => moment(date).fromNow();

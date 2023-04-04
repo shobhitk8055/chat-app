@@ -1,8 +1,8 @@
 import React from "react";
-import { useChatStore } from "../../store/chat";
 import { IMessage } from "../../types/Message";
-import { getDateString } from "../../utils/format";
-
+import { useUserStore } from "../../store/user";
+import { getTime } from "../../utils/format";
+import { upperFirst } from "lodash";
 const Image = ({ source }: { source: string }) => {
   return (
     <img
@@ -16,16 +16,16 @@ const Image = ({ source }: { source: string }) => {
 
 const Content = ({ message }: { message: IMessage }) => {
   return (
-    <div className="card">
-      <div className="card-header d-flex justify-content-between p-3">
-        <p className="fw-bold mb-0">{message.sender.name}</p>
+    <div className="card w-100">
+      <div className="card-header d-flex justify-content-between header">
+        <p className="fw-bold mb-0">{upperFirst(message.sender.name)}</p>
         <p className="text-muted small mb-0">
           <span>
-            <i className="far fa-clock" /> <span>{getDateString(message.time)}</span>
+            <i className="far fa-clock" /> <span>{getTime(message.time)}</span>
           </span>
         </p>
       </div>
-      <div className="card-body">
+      <div className="card-body message-body">
         <p className="mb-0">{message.text}</p>
       </div>
     </div>
@@ -33,7 +33,7 @@ const Content = ({ message }: { message: IMessage }) => {
 };
 
 const Message = ({ message }: { message: IMessage }) => {
-  const { loggedInUser } = useChatStore();
+  const { loggedInUser } = useUserStore();
 
   return (
     <li className="d-flex justify-content-between mb-4">

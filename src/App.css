@@ -18,15 +18,43 @@ span#search-addon {
 
 .messages {
     height: 78vh !important;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
 }
 
 .person-list {
     height: 56vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .send-message-input {
     height: 50px;
+}
+
+.header {
+    padding: 8px 20px !important;
+}
+
+.message-body {
+    padding: 10px 20px !important;
+}
+
+.time {
+    font-size: 10px !important;
+}
+
+.no-new {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    align-items: center;
+    height: 90%;
+}
+
+.no-new-people {
+    text-align: center;
+    padding-top: 130px;
+    position: absolute;
+    left: 110px;
 }
