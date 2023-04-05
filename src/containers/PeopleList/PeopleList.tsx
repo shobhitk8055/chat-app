@@ -77,7 +77,7 @@ function PeopleList(props: Props): React.ReactElement {
         <div className="card-body">
           <div className="d-flex justify-content-between mb-2 text-primary">
             <h6>Conversations</h6>
-            <i className="fa-solid fa-circle-plus add-icon"></i>
+            <i   className="fa-solid fa-circle-plus add-icon"></i>
           </div>
           {viewConversations?.length === 0 && <p className="no-new-people">No chats found</p>}
           <ul className="list-unstyled mb-0 person-list">
