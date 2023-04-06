@@ -7,6 +7,7 @@ import messageList from "../../assets/conversations.json";
 import { useUserStore } from "../../store/user";
 import { useConversationStore } from "../../store/conversation";
 import { useMessageStore } from "../../store/message";
+import AddPerson from "../../components/AddPerson/AddPerson";
 
 interface Props {}
 
@@ -36,6 +37,7 @@ function ChatBoard(props: Props) {
             setActivePerson={setActivePerson}
           />
           <Messages />
+          <AddPerson />
         </div>
       </div>
     </section>

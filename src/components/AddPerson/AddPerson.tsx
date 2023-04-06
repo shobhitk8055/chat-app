@@ -1,4 +1,5 @@
 import React from "react";
+import people from "../../assets/people.json";
 
 const AddPerson = () => {
   return (
@@ -13,7 +14,7 @@ const AddPerson = () => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
-              Modal title
+              Choose a contact
             </h5>
             <button
               type="button"
@@ -22,18 +23,15 @@ const AddPerson = () => {
               aria-label="Close"
             ></button>
           </div>
-          <div className="modal-body">...</div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" className="btn btn-primary">
-              Save changes
-            </button>
+          <div className="modal-body">
+            <ul className="list-group">
+              {people.map((i, index) => (
+                <li key={index} className="list-group-item">
+                  <img className="listImage" src={i.image} />
+                  {i.name}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

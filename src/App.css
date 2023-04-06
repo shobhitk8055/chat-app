@@ -58,3 +58,18 @@ span#search-addon {
     position: absolute;
     left: 110px;
 }
+
+img.listImage {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    margin-right: 15px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.list-group-item{
+    cursor: pointer;
+}
+.list-group-item:hover {
+    background-color: #f2efef;
+}
