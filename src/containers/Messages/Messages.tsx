@@ -5,11 +5,10 @@ import { useUserStore } from "../../store/user";
 import moment from "moment";
 import { useConversationStore } from "../../store/conversation";
 
-interface Props {}
-
+// This component checks if any user is clicked or are there any messages
 function CheckNew() {
   const { currentReceiver } = useUserStore();
-  const { currentMessages, pushToCurrentChat, pushMessage } = useMessageStore();
+  const { currentMessages } = useMessageStore();
 
   if (!currentReceiver) {
     return (
@@ -21,12 +20,14 @@ function CheckNew() {
   }
   return null;
 }
-function Messages(props: Props): React.ReactElement {
+
+function Messages(): React.ReactElement {
   const { currentMessages, pushToCurrentChat, pushMessage } = useMessageStore();
   const [inputMessage, setInputMessage] = useState<string>("");
   const { loggedInUser, currentReceiver } = useUserStore();
   const { updateConversation } = useConversationStore();
 
+  // Send a new message to user
   const addMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.stopPropagation();
     if (inputMessage && currentReceiver) {

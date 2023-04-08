@@ -20,6 +20,7 @@ function ChatBoard(props: Props) {
   const { conversations, setAllConversation, pushConversation } =
     useConversationStore();
 
+  //Load the recent conversations and all messages from json file
   useEffect(() => {
     const user = loggedInUser.id;
     const userConversations = recentChats.find((i) => i.userId === user);
@@ -29,6 +30,7 @@ function ChatBoard(props: Props) {
     useMessageStore.getState().setAllMessages(messageList);
   }, []);
 
+  //Set a person as active and load its previous messages
   const setPerson = (user: IUser) => {
     setActivePerson(user.id);
     setCurrentReceiver(user);
@@ -41,6 +43,7 @@ function ChatBoard(props: Props) {
     document.getElementById("messageInput")?.focus();
   };
 
+  //New conversation handler
   const handleAddPerson = (user: IUser) => {
     const findConversation = conversations.find((i) => i.user.id === user.id);
     if (!findConversation) {

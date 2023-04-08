@@ -19,6 +19,7 @@ function PeopleList(props: Props): React.ReactElement {
   const [allConversations, setAllConversations] = useState<IConversation[]>();
   const [viewConversations, setViewConversations] = useState<IConversation[]>();
 
+  //Search input handler
   const handleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setValue(val);
@@ -32,6 +33,7 @@ function PeopleList(props: Props): React.ReactElement {
     }
   };
 
+  // Sets conversations when component is loaded
   useEffect(() => {
     if (conversations) {
       setAllConversations(conversations);
