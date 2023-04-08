@@ -51,5 +51,6 @@
   "devDependencies": {
     "@types/lodash": "^4.14.192",
     "gh-pages": "^5.0.0"
-  }
+  },
+  "homepage": "https://shobhitk8055.github.io/chat-app"
 }
