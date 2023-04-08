@@ -1,7 +1,17 @@
 import React from "react";
 import people from "../../assets/people.json";
+import { upperFirst } from "lodash";
+import { IUser } from "../../types/User";
+import { useConversationStore } from "../../store/conversation";
+import { useUserStore } from "../../store/user";
 
-const AddPerson = () => {
+interface AddPersonProps {
+  setPersonConversations: (i: IUser) => void;
+}
+const AddPerson = (props: AddPersonProps) => {
+  const { setPersonConversations } = props;
+  const { loggedInUser } = useUserStore();
+
   return (
     <div
       className="modal fade"
@@ -25,10 +35,15 @@ const AddPerson = () => {
           </div>
           <div className="modal-body">
             <ul className="list-group">
-              {people.map((i, index) => (
-                <li key={index} className="list-group-item">
+              {people.filter(i => i.id !== loggedInUser.id).map((i, index) => (
+                <li
+                  key={index}
+                  onClick={() => setPersonConversations(i)}
+                  data-bs-dismiss="modal"
+                  className="list-group-item"
+                >
                   <img className="listImage" src={i.image} />
-                  {i.name}
+                  {upperFirst(i.name)}
                 </li>
               ))}
             </ul>

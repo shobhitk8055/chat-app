@@ -13,14 +13,18 @@ export const useConversationStore = create<ConversationStore>((set) => ({
   setAllConversation: (conversations) =>
     set(() => ({ conversations: conversations })),
   pushConversation: (conversation) =>
-    set((state) => ({
-      conversations: [...state.conversations, conversation],
-    })),
+    set((state) => {
+      const convos = [ ...state.conversations];
+      convos.unshift(conversation);
+      return {
+        conversations: convos,
+      };
+    }),
   updateConversation: (userId, message, time) =>
     set((state) => {
       const conversationList = [...state.conversations];
       let findConversation = conversationList.find((i) => i.user.id === userId);
-      if(findConversation){
+      if (findConversation) {
         findConversation.lastMessage = message;
         findConversation.lastMessageAt = time;
       }

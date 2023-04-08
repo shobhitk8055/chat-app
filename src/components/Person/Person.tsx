@@ -33,16 +33,21 @@ function Person(props: Props) {
           <img
             src={user.image}
             alt="avatar"
-            className="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+            className="rounded-circle object-cover d-flex align-self-center me-3 shadow-1-strong"
             width={60}
+            height={60}
           />
-          <div className="pt-1">
+          <div className="pt-1 name-message">
             <p className="fw-bold mb-0">{upperFirst(user.name)}</p>
-            <p className="small text-muted">{lastMessage}</p>
+            {lastMessage && <p className="small text-muted">{lastMessage}</p>}
           </div>
         </div>
         <div className="pt-1">
-          <p className="small text-muted mb-1 time">{getTime(lastMessageAt)}</p>
+          {lastMessageAt && (
+            <p className="small text-muted mb-1 time">
+              {getTime(lastMessageAt)}
+            </p>
+          )}
           {unreadMessages > 0 && (
             <span className="badge bg-danger float-end">{unreadMessages}</span>
           )}

@@ -59,12 +59,15 @@ function Messages(props: Props): React.ReactElement {
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
             className="form-control me-2 bg-white send-message-input"
-            id="textAreaExample2"
+            id="messageInput"
           />
-          <label className="form-label" htmlFor="textAreaExample2">
+          <label className="form-label" htmlFor="messageInput">
             Message
           </label>
-          <button type="button" className="btn btn-info btn-rounded float-end">
+          <button
+            type="submit"
+            className="btn btn-info btn-rounded float-end"
+          >
             Send
           </button>
         </div>

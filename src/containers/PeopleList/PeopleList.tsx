@@ -9,13 +9,12 @@ import { IUser } from "../../types/User";
 interface Props {
   conversations: IConversation[];
   activePerson?: string;
-  setActivePerson: (id: string) => void;
+  setActivePerson: (user: IUser) => void;
 }
 
 function PeopleList(props: Props): React.ReactElement {
   const { conversations, activePerson, setActivePerson } = props;
-  const { messages, setAllCurrentMessages } = useMessageStore();
-  const { loggedInUser, setCurrentReceiver } = useUserStore();
+
   const [value, setValue] = useState<string>();
   const [allConversations, setAllConversations] = useState<IConversation[]>();
   const [viewConversations, setViewConversations] = useState<IConversation[]>();
@@ -40,18 +39,6 @@ function PeopleList(props: Props): React.ReactElement {
     }
   }, [conversations]);
 
-  const handleActiveUser = (user: IUser) => {
-    const id = user.id;
-    setActivePerson(id);
-    setCurrentReceiver(user);
-    const msgs = messages.filter(
-      (i) =>
-        (i.sender.id === loggedInUser.id && i.receiver.id === id) ||
-        (i.receiver.id === loggedInUser.id && i.sender.id === id)
-    );
-    setAllCurrentMessages(msgs);
-  };
-
   return (
     <div className="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
       <div className="card mb-3">
@@ -65,7 +52,6 @@ function PeopleList(props: Props): React.ReactElement {
               aria-describedby="search-addon"
               value={value}
               onChange={handleValue}
-              onKeyUp={(e) => console.log("e.target")}
             />
             <span className="input-group-text border-0" id="search-addon">
               <i className="fas fa-search"></i>
@@ -91,7 +77,7 @@ function PeopleList(props: Props): React.ReactElement {
               <Person
                 key={index}
                 isActive={!!(activePerson && activePerson === person.user.id)}
-                setActive={() => handleActiveUser(person.user)}
+                setActive={() => setActivePerson(person.user)}
                 user={person.user}
                 lastMessage={person.lastMessage}
                 lastMessageAt={person.lastMessageAt}
